@@ -35,19 +35,32 @@ Namespace Controllers
         ' GET: Pedidoes/Create
         Function Create() As ActionResult
             ViewBag.IdCliente = New SelectList(db.Cliente, "ClienteId", "Nombre")
+            ViewBag.IdProducto = New SelectList(db.Producto, "ProductoId", "Nombre")
             Return View()
         End Function
 
         ' POST: Pedidoes/Create
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="PedidoId,FechaPedido,FechaModificacionPedido,IdCliente")> ByVal pedido As Pedido) As ActionResult
+        Function Create(<Bind(Include:="PedidoId,FechaPedido,FechaModificacionPedido,IdCliente")> ByVal pedido As Pedido,
+                    <Bind(Include:="DetallePedidoId,IdProducto,IdCliente,Cantidad,FechaAdiciDetaPedido,FechaModifiDetaPedido")> ByVal detallepedido As DetallePedido,
+                    <Bind(Include:="IdProducto,Cantidad,IdCliente")> ByVal detallepedidop As PedidoDetalleP
+                    ) As ActionResult
             If ModelState.IsValid Then
+                pedido.IdCliente = detallepedidop.IdCliente
+                pedido.FechaPedido = DateTime.Now
+                detallepedido.FechaAdiciDetaPedido = DateTime.Now
+                detallepedido.Cantidad = detallepedidop.Cantidad
+                detallepedido.IdProducto = detallepedidop.IdProducto
                 db.Pedido.Add(pedido)
+                db.SaveChanges()
+                detallepedido.IdPedido = pedido.PedidoId
+                db.DetallePedido.Add(detallepedido)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.IdCliente = New SelectList(db.Cliente, "ClienteId", "Nombre", pedido.IdCliente)
+            ViewBag.IdCliente = New SelectList(db.Cliente, "ClienteId", "Nombre", detallepedidop.IdCliente)
+            ViewBag.IdProducto = New SelectList(db.Producto, "ProductoId", "Nombre", detallepedidop.IdProducto)
             Return View(pedido)
         End Function
 
@@ -67,8 +80,13 @@ Namespace Controllers
         ' POST: Pedidoes/Edit/5
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="PedidoId,FechaPedido,FechaModificacionPedido,IdCliente")> ByVal pedido As Pedido) As ActionResult
+        Function Edit(<Bind(Include:="PedidoId,FechaPedido,FechaModificacionPedido,IdCliente")> ByVal pedido As Pedido,
+                      <Bind(Include:="DetallePedidoId,IdProducto,IdCliente,FechaAdiciDetaPedido,FechaModifiDetaPedido")> ByVal detallepedido As DetallePedido
+            ) As ActionResult
+
             If ModelState.IsValid Then
+                pedido.FechaModificacionPedido = DateTime.Now
+                detallepedido.FechaModifiDetaPedido = DateTime.Now
                 db.Entry(pedido).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")

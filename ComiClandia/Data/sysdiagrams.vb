@@ -10,13 +10,11 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Pedido
-    Public Property PedidoId As Integer
-    Public Property FechaPedido As Date
-    Public Property FechaModificacionPedido As Nullable(Of Date)
-    Public Property IdCliente As Integer
-
-    Public Overridable Property Cliente As Cliente
-    Public Overridable Property DetallePedido As ICollection(Of DetallePedido) = New HashSet(Of DetallePedido)
+Partial Public Class sysdiagrams
+    Public Property name As String
+    Public Property principal_id As Integer
+    Public Property diagram_id As Integer
+    Public Property version As Nullable(Of Integer)
+    Public Property definition As Byte()
 
 End Class

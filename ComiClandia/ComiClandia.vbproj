@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\ClientesController.vb" />
+    <Compile Include="Controllers\DetallePedidoesController.vb" />
     <Compile Include="Controllers\PedidoesController.vb" />
     <Compile Include="Controllers\ProductoesController.vb" />
     <Compile Include="Data\Cliente.vb">
@@ -194,10 +195,14 @@
     <Compile Include="Data\Producto.vb">
       <DependentUpon>Model_ComiClandia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\sysdiagrams.vb">
+      <DependentUpon>Model_ComiClandia.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.vb" />
+    <Compile Include="Models\PedidoDetalleP.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -262,6 +267,11 @@
     <Content Include="Views\Pedidoes\Details.vbhtml" />
     <Content Include="Views\Pedidoes\Edit.vbhtml" />
     <Content Include="Views\Pedidoes\Index.vbhtml" />
+    <Content Include="Views\DetallePedidoes\Create.vbhtml" />
+    <Content Include="Views\DetallePedidoes\Delete.vbhtml" />
+    <Content Include="Views\DetallePedidoes\Details.vbhtml" />
+    <Content Include="Views\DetallePedidoes\Edit.vbhtml" />
+    <Content Include="Views\DetallePedidoes\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

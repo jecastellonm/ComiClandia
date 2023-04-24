@@ -25,9 +25,10 @@ Partial Public Class ComiClandiaEntities
     End Sub
 
     Public Overridable Property Cliente() As DbSet(Of Cliente)
+    Public Overridable Property Producto() As DbSet(Of Producto)
+    Public Overridable Property sysdiagrams() As DbSet(Of sysdiagrams)
     Public Overridable Property DetallePedido() As DbSet(Of DetallePedido)
     Public Overridable Property Pedido() As DbSet(Of Pedido)
-    Public Overridable Property Producto() As DbSet(Of Producto)
 
     Public Overridable Function CreateEditCliente(clienteId As Nullable(Of Integer), nombre As String, identificacion As String, direccion As String, telefono As String, ciudad As String) As ObjectResult(Of Cliente)
         Dim clienteIdParameter As ObjectParameter = If(clienteId.HasValue, New ObjectParameter("ClienteId", clienteId), New ObjectParameter("ClienteId", GetType(Integer)))
@@ -61,7 +62,7 @@ Partial Public Class ComiClandiaEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Cliente)("CreateEditCliente", mergeOption, clienteIdParameter, nombreParameter, identificacionParameter, direccionParameter, telefonoParameter, ciudadParameter)
     End Function
 
-    Public Overridable Function CreateEditDetallePedido(detallePedidoId As Nullable(Of Integer), idProducto As Nullable(Of Integer), idPedido As Nullable(Of Integer), cantidad As Nullable(Of Integer)) As ObjectResult(Of DetallePedido)
+    Public Overridable Function CreateEditDetallePedido(detallePedidoId As Nullable(Of Integer), idProducto As Nullable(Of Integer), idPedido As Nullable(Of Integer), cantidad As Nullable(Of Integer)) As Integer
         Dim detallePedidoIdParameter As ObjectParameter = If(detallePedidoId.HasValue, New ObjectParameter("DetallePedidoId", detallePedidoId), New ObjectParameter("DetallePedidoId", GetType(Integer)))
 
         Dim idProductoParameter As ObjectParameter = If(idProducto.HasValue, New ObjectParameter("IdProducto", idProducto), New ObjectParameter("IdProducto", GetType(Integer)))
@@ -70,35 +71,15 @@ Partial Public Class ComiClandiaEntities
 
         Dim cantidadParameter As ObjectParameter = If(cantidad.HasValue, New ObjectParameter("Cantidad", cantidad), New ObjectParameter("Cantidad", GetType(Integer)))
 
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of DetallePedido)("CreateEditDetallePedido", detallePedidoIdParameter, idProductoParameter, idPedidoParameter, cantidadParameter)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("CreateEditDetallePedido", detallePedidoIdParameter, idProductoParameter, idPedidoParameter, cantidadParameter)
     End Function
 
-    Public Overridable Function CreateEditDetallePedido(detallePedidoId As Nullable(Of Integer), idProducto As Nullable(Of Integer), idPedido As Nullable(Of Integer), cantidad As Nullable(Of Integer), mergeOption As MergeOption) As ObjectResult(Of DetallePedido)
-        Dim detallePedidoIdParameter As ObjectParameter = If(detallePedidoId.HasValue, New ObjectParameter("DetallePedidoId", detallePedidoId), New ObjectParameter("DetallePedidoId", GetType(Integer)))
-
-        Dim idProductoParameter As ObjectParameter = If(idProducto.HasValue, New ObjectParameter("IdProducto", idProducto), New ObjectParameter("IdProducto", GetType(Integer)))
-
-        Dim idPedidoParameter As ObjectParameter = If(idPedido.HasValue, New ObjectParameter("IdPedido", idPedido), New ObjectParameter("IdPedido", GetType(Integer)))
-
-        Dim cantidadParameter As ObjectParameter = If(cantidad.HasValue, New ObjectParameter("Cantidad", cantidad), New ObjectParameter("Cantidad", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of DetallePedido)("CreateEditDetallePedido", mergeOption, detallePedidoIdParameter, idProductoParameter, idPedidoParameter, cantidadParameter)
-    End Function
-
-    Public Overridable Function CreateEditPedido(pedidoId As Nullable(Of Integer), idCliente As Nullable(Of Integer)) As ObjectResult(Of Pedido)
+    Public Overridable Function CreateEditPedido(pedidoId As Nullable(Of Integer), idCliente As Nullable(Of Integer)) As Integer
         Dim pedidoIdParameter As ObjectParameter = If(pedidoId.HasValue, New ObjectParameter("PedidoId", pedidoId), New ObjectParameter("PedidoId", GetType(Integer)))
 
         Dim idClienteParameter As ObjectParameter = If(idCliente.HasValue, New ObjectParameter("IdCliente", idCliente), New ObjectParameter("IdCliente", GetType(Integer)))
 
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Pedido)("CreateEditPedido", pedidoIdParameter, idClienteParameter)
-    End Function
-
-    Public Overridable Function CreateEditPedido(pedidoId As Nullable(Of Integer), idCliente As Nullable(Of Integer), mergeOption As MergeOption) As ObjectResult(Of Pedido)
-        Dim pedidoIdParameter As ObjectParameter = If(pedidoId.HasValue, New ObjectParameter("PedidoId", pedidoId), New ObjectParameter("PedidoId", GetType(Integer)))
-
-        Dim idClienteParameter As ObjectParameter = If(idCliente.HasValue, New ObjectParameter("IdCliente", idCliente), New ObjectParameter("IdCliente", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Pedido)("CreateEditPedido", mergeOption, pedidoIdParameter, idClienteParameter)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("CreateEditPedido", pedidoIdParameter, idClienteParameter)
     End Function
 
     Public Overridable Function CreateEditProducto(productoId As Nullable(Of Integer), nombre As String, descripcion As String, stock As Nullable(Of Integer), valor As Nullable(Of Integer), departamento As Nullable(Of Integer)) As ObjectResult(Of Producto)
