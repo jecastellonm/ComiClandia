@@ -6,6 +6,7 @@ CREATE TABLE [dbo].[Cliente](
 	[Telefono] [varchar](20) NOT NULL,
 	[Ciudad] [varchar](20) NOT NULL,
 	[Exclusivo] [bit] NOT NULL,
+	[Activo] [bit] NOT NULL,
  CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
 (
 	[ClienteId] ASC
@@ -18,8 +19,11 @@ CREATE TABLE [dbo].[DetallePedido](
 	[IdProducto] [int] NOT NULL,
 	[IdPedido] [int] NOT NULL,
 	[Cantidad] [int] NOT NULL,
+	[TotalDetalleP] [int] NOT NULL,
 	[FechaAdiciDetaPedido] [datetime] NOT NULL,
 	[FechaModifiDetaPedido] [datetime] NULL,
+	[Observaciones] [varchar](500) NULL,
+	[Activo] [bit] NOT NULL,
  CONSTRAINT [PK_DetallePedido] PRIMARY KEY CLUSTERED 
 (
 	[DetallePedidoId] ASC
@@ -32,6 +36,8 @@ CREATE TABLE [dbo].[Pedido](
 	[FechaPedido] [datetime] NOT NULL,
 	[FechaModificacionPedido] [datetime] NULL,
 	[IdCliente] [int] NOT NULL,
+	[EstadoPedido] [tinyint] NOT NULL,
+	[IdTipoPedido] [int] NOT NULL,
  CONSTRAINT [PK_Pedido] PRIMARY KEY CLUSTERED 
 (
 	[PedidoId] ASC
@@ -46,6 +52,7 @@ CREATE TABLE [dbo].[Producto](
 	[Stock] [int] NOT NULL,
 	[Valor] [int] NOT NULL,
 	[Departamento] [int] NOT NULL,
+	[Activo] [bit] NOT NULL,
  CONSTRAINT [PK_Producto] PRIMARY KEY CLUSTERED 
 (
 	[ProductoID] ASC
