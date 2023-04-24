@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2c22a0831fd44878cb67c6b4ac1dd6d" Name="Diagram1">
+        <EntityTypeShape EntityType="ComiClandiaModel.Cliente" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComiClandiaModel.DetallePedido" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComiClandiaModel.Pedido" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComiClandiaModel.Producto" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="ComiClandiaModel.FK_Pedido_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="ComiClandiaModel.FK_DetallePedido_Pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="ComiClandiaModel.FK_DetallePedido_Producto" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

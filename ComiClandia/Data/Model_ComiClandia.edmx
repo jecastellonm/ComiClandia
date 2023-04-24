@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ComiClandiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Exclusivo" Type="bit" />
+        </EntityType>
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="DetallePedidoId" />
+          </Key>
+          <Property Name="DetallePedidoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="IdPedido" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="FechaAdiciDetaPedido" Type="datetime" Nullable="false" />
+          <Property Name="FechaModifiDetaPedido" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="PedidoId" />
+          </Key>
+          <Property Name="PedidoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaPedido" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacionPedido" Type="datetime" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoID" />
+          </Key>
+          <Property Name="ProductoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+          <Property Name="Departamento" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetallePedido_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="PedidoId" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoID" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreateEditCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClienteId" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CreateEditDetallePedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DetallePedidoId" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreateEditPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PedidoId" Type="int" Mode="In" />
+          <Parameter Name="IdCliente" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreateEditProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoId" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Stock" Type="int" Mode="In" />
+          <Parameter Name="Valor" Type="int" Mode="In" />
+          <Parameter Name="Departamento" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ComiClandiaModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetallePedido_Pedido" Association="Self.FK_DetallePedido_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Producto" Association="Self.FK_DetallePedido_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComiClandiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Exclusivo" Type="Boolean" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="DetallePedidoId" />
+          </Key>
+          <Property Name="DetallePedidoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="FechaAdiciDetaPedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModifiDetaPedido" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_DetallePedido_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_DetallePedido_Producto" FromRole="DetallePedido" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="PedidoId" />
+          </Key>
+          <Property Name="PedidoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaPedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacionPedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+          <NavigationProperty Name="DetallePedido" Relationship="Self.FK_DetallePedido_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoID" />
+          </Key>
+          <Property Name="ProductoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+          <Property Name="Departamento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetallePedido" Relationship="Self.FK_DetallePedido_Producto" FromRole="Producto" ToRole="DetallePedido" />
+        </EntityType>
+        <Association Name="FK_Pedido_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="PedidoId" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoID" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ComiClandiaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Pedido" Association="Self.FK_DetallePedido_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Producto" Association="Self.FK_DetallePedido_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <FunctionImport Name="CreateEditCliente" EntitySet="Cliente" ReturnType="Collection(ComiClandiaModel.Cliente)">
+            <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateEditDetallePedido" EntitySet="DetallePedido" ReturnType="Collection(ComiClandiaModel.DetallePedido)">
+            <Parameter Name="DetallePedidoId" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreateEditPedido" EntitySet="Pedido" ReturnType="Collection(ComiClandiaModel.Pedido)">
+            <Parameter Name="PedidoId" Mode="In" Type="Int32" />
+            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreateEditProducto" EntitySet="Producto" ReturnType="Collection(ComiClandiaModel.Producto)">
+            <Parameter Name="ProductoId" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Stock" Mode="In" Type="Int32" />
+            <Parameter Name="Valor" Mode="In" Type="Int32" />
+            <Parameter Name="Departamento" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="CreateEditCliente_Result">
+          <Property Type="Int32" Name="ClienteId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Ciudad" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Exclusivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CreateEditDetallePedido_Result">
+          <Property Type="Int32" Name="DetallePedidoId" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+          <Property Type="DateTime" Name="FechaAdiciDetaPedido" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FechaModifiDetaPedido" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="CreateEditPedido_Result">
+          <Property Type="Int32" Name="PedidoId" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FechaModificacionPedido" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CreateEditProducto_Result">
+          <Property Type="Int32" Name="ProductoID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Stock" Nullable="false" />
+          <Property Type="Int32" Name="Valor" Nullable="false" />
+          <Property Type="Int32" Name="Departamento" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComiClandiaModelStoreContainer" CdmEntityContainer="ComiClandiaEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="ComiClandiaModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Exclusivo" ColumnName="Exclusivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallePedido">
+            <EntityTypeMapping TypeName="ComiClandiaModel.DetallePedido">
+              <MappingFragment StoreEntitySet="DetallePedido">
+                <ScalarProperty Name="DetallePedidoId" ColumnName="DetallePedidoId" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="FechaAdiciDetaPedido" ColumnName="FechaAdiciDetaPedido" />
+                <ScalarProperty Name="FechaModifiDetaPedido" ColumnName="FechaModifiDetaPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="ComiClandiaModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaModificacionPedido" ColumnName="FechaModificacionPedido" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="ComiClandiaModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateEditCliente" FunctionName="ComiClandiaModel.Store.CreateEditCliente">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateEditDetallePedido" FunctionName="ComiClandiaModel.Store.CreateEditDetallePedido">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateEditPedido" FunctionName="ComiClandiaModel.Store.CreateEditPedido">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateEditProducto" FunctionName="ComiClandiaModel.Store.CreateEditProducto">
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
