@@ -40,7 +40,7 @@ End Code
 
         @<div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Regresar", "Index")
         </div>
     End Using
 </div>
