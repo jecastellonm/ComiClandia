@@ -46,9 +46,9 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.Producto.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.DetallePedidoId }) |
+            @Html.ActionLink("Editar", "Edit", New With {.id = item.DetallePedidoId}) |
             @Html.ActionLink("Details", "Details", New With {.id = item.DetallePedidoId }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.DetallePedidoId })
+            @Html.ActionLink("Borrar", "Delete", New With {.id = item.DetallePedidoId})
         </td>
     </tr>
 Next

@@ -21,7 +21,7 @@
             @Html.ActionLink("Gestionar Clientes________", "Index", "Clientes", New With {.area = ""}, New With {.class = "navbar-brand"})
             @Html.ActionLink("Gestionar Productos_______", "Index", "Productoes", New With {.area = ""}, New With {.class = "navbar-brand"})
             @Html.ActionLink("Gestionar Pedidos_________", "Index", "Pedidoes", New With {.area = ""}, New With {.class = "navbar-brand"})
-
+            @Html.ActionLink("Gestionar DetallePedidos_________", "Index", "DetallePedidoes", New With {.area = ""}, New With {.class = "navbar-brand"})
           </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

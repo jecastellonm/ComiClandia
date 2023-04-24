@@ -40,8 +40,6 @@ Namespace Controllers
         End Function
 
         ' POST: DetallePedidoes/Create
-        'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        'más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="DetallePedidoId,IdProducto,IdPedido,Cantidad,FechaAdiciDetaPedido,FechaModifiDetaPedido")> ByVal detallePedido As DetallePedido) As ActionResult
@@ -70,8 +68,6 @@ Namespace Controllers
         End Function
 
         ' POST: DetallePedidoes/Edit/5
-        'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        'más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="DetallePedidoId,IdProducto,IdPedido,Cantidad,FechaAdiciDetaPedido,FechaModifiDetaPedido")> ByVal detallePedido As DetallePedido) As ActionResult
