@@ -66,8 +66,8 @@ End Code
         @For Each item2 In item.DetallePedido
           @<p>
             @Html.HiddenFor(Function(modelItem) item2.DetallePedidoId) 
-            @Html.ActionLink("Editar", "Edit", "DetallePedidoes", New With {.id2 = item2.DetallePedidoId})
-            @Html.ActionLink("Borrar", "Delete", "DetallePedidoes", New With {.id2 = item2.DetallePedidoId})
+            @Html.ActionLink("Editar", "Edit", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
+            @Html.ActionLink("Borrar", "Delete", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
           </p>
           @*@Html.ActionLink("Details", "Details", New With {.id = item.PedidoId }) |*@
 

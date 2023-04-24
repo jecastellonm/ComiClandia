@@ -47,7 +47,7 @@ End Code
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", New With {.id = item.DetallePedidoId}) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.DetallePedidoId }) |
+            @*@Html.ActionLink("Details", "Details", New With {.id = item.DetallePedidoId }) |*@
             @Html.ActionLink("Borrar", "Delete", New With {.id = item.DetallePedidoId})
         </td>
     </tr>

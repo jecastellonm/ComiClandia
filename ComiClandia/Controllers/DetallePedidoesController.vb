@@ -53,7 +53,7 @@ Namespace Controllers
             Return View(detallePedido)
         End Function
 
-        ' GET: DetallePedidoes/Edit/5
+        'GET: DetallePedidoes/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
