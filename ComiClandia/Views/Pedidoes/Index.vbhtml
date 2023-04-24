@@ -28,6 +28,7 @@ End Code
     <th>
       @Html.DisplayName("Fecha Modificacion Pedido")
     </th>
+    <th></th>
     <th>
       @Html.DisplayNameFor(Function(model) model.Cliente.Nombre)
     </th>
