@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[DetallePedido](
 	[IdPedido] [int] NOT NULL,
 	[Cantidad] [int] NOT NULL,
 	[FechaAdiciDetaPedido] [datetime] NOT NULL,
-	[FechaModifiDetaPedido] [datetime] NOT NULL,
+	[FechaModifiDetaPedido] [datetime] NULL,
  CONSTRAINT [PK_DetallePedido] PRIMARY KEY CLUSTERED 
 (
 	[DetallePedidoId] ASC
@@ -30,7 +30,7 @@ GO
 CREATE TABLE [dbo].[Pedido](
 	[PedidoId] [int] IDENTITY(1,1) NOT NULL,
 	[FechaPedido] [datetime] NOT NULL,
-	[FechaModificacionPedido] [datetime] NOT NULL,
+	[FechaModificacionPedido] [datetime] NULL,
 	[IdCliente] [int] NOT NULL,
  CONSTRAINT [PK_Pedido] PRIMARY KEY CLUSTERED 
 (
