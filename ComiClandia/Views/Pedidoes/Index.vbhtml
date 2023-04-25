@@ -23,10 +23,10 @@ End Code
       @Html.DisplayName("Cantidad")
     </th>
     <th>
-      @Html.DisplayName("Fecha Pedido")
+      @Html.DisplayName("Fecha Detalle Pedido")
     </th>
     <th>
-      @Html.DisplayName("Fecha Modificacion Pedido")
+      @Html.DisplayName("Fecha Modificacion Detalle Pedido")
     </th>
     <th></th>
     <th>
@@ -87,7 +87,7 @@ End Code
         @Html.DisplayFor(Function(modelItem) item.Cliente.Nombre)
       </td>
       <td>
-        <p>@TotalPedido</p>
+        <p><strong>@TotalPedido</strong></p>
       </td>
       <td>
         @Html.ActionLink("Editar", "Edit", New With {.id = item.PedidoId}) |
