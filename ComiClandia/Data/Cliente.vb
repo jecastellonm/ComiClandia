@@ -17,7 +17,8 @@ Partial Public Class Cliente
     Public Property Direccion As String
     Public Property Telefono As String
     Public Property Ciudad As String
-    Public Property Exclusivo As Nullable(Of Boolean)
+    Public Property Exclusivo As Boolean
+    Public Property Activo As Boolean
 
     Public Overridable Property Pedido As ICollection(Of Pedido) = New HashSet(Of Pedido)
 

@@ -17,6 +17,7 @@ Partial Public Class Producto
     Public Property Stock As Integer
     Public Property Valor As Integer
     Public Property Departamento As Integer
+    Public Property Activo As Boolean
 
     Public Overridable Property DetallePedido As ICollection(Of DetallePedido) = New HashSet(Of DetallePedido)
 

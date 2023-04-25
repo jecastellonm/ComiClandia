@@ -1,52 +1,71 @@
 ﻿@ModelType ComiClandia.Pedido
 @Code
-    ViewData("Title") = "Create"
+  ViewData("Title") = "Create"
 End Code
 
 <h2>Create</h2>
 
-@Using (Html.BeginForm()) 
-    @Html.AntiForgeryToken()
-    
-    @<div class="form-horizontal">
-        <h4>Pedido</h4>
-        <hr />
-        @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.FechaPedido, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.FechaPedido, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.FechaPedido, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+@Using (Html.BeginForm())
+  @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.FechaModificacionPedido, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.FechaModificacionPedido, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.FechaModificacionPedido, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+  @<div class="form-horizontal">
+    <h4>Pedido</h4>
+    <hr />
+    @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
+    @*<div class="form-group">
+      @Html.LabelFor(Function(model) model.FechaPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
+      <div class="col-md-10">
+        @Html.EditorFor(Function(model) model.FechaPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
+        @Html.ValidationMessageFor(Function(model) model.FechaPedido, "", New With {.class = "text-danger"})
+      </div>
+    </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.IdCliente, "IdCliente", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdCliente", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.IdCliente, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+    <div class="form-group">
+      @Html.LabelFor(Function(model) model.FechaModificacionPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
+      <div class="col-md-10">
+        @Html.EditorFor(Function(model) model.FechaModificacionPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
+        @Html.ValidationMessageFor(Function(model) model.FechaModificacionPedido, "", New With {.class = "text-danger"})
+      </div>
     </div>
+
+    <div class="form-group">
+      @Html.LabelFor(Function(model) model.IdCliente, "Cliente", htmlAttributes:=New With {.class = "control-label col-md-2"})
+      <div class="col-md-10">
+        @Html.DropDownList("IdCliente", Nothing, htmlAttributes:=New With {.class = "form-control"})
+        @Html.ValidationMessageFor(Function(model) model.IdCliente, "", New With {.class = "text-danger"})
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.Label("IdProducto", "Producto", htmlAttributes:=New With {.class = "control-label col-md-2"})
+      <div Class="col-md-10">
+        @*@For Each item In Model.DetallePedido*@
+        @Html.DropDownList("IdProducto", Nothing, htmlAttributes:=New With {.class = "form-control"})
+        @*@Html.ValidationMessageFor(Function(model) item.IdProducto, "", New With {.class = "text-danger"})*@
+        @*Next*@
+      </div>
+    </div>
+    <div Class="form-group">
+      @Html.Label("Cantidad", "Cantidad", htmlAttributes:=New With {.class = "control-label col-md-2"})
+      <div Class="col-md-10">
+        @*@For Each item In Model.DetallePedido*@
+        @Html.Editor("Cantidad", New With {.htmlAttributes = New With {.class = "form-control"}})
+        @*@Html.ValidationMessageFor(Function(model) item.Cantidad, "", New With {.class = "text-danger"})*@
+        @*Next*@
+      </div>
+    </div>
+
+    <div Class="form-group">
+      <div Class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" Class="btn btn-default" />
+      </div>
+    </div>
+  </div>
 End Using
 
 <div>
-    @Html.ActionLink("Regresar", "Index")
+  @Html.ActionLink("Regresar", "Index")
 </div>
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<Script src="~/Scripts/jquery-3.4.1.min.js"></Script>
+<Script src="~/Scripts/jquery.validate.min.js"></Script>
+<Script src="~/Scripts/jquery.validate.unobtrusive.min.js"></Script>

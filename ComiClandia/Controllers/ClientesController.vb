@@ -42,18 +42,18 @@ Namespace Controllers
 
         ' POST: Clientes/Create
         <HttpPost()>
-        <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo")> ByVal cliente As Cliente) As ActionResult
-            If ModelState.IsValid Then
-                db.Cliente.Add(cliente)
-                db.SaveChanges()
-                Return RedirectToAction("Index")
-            End If
-            Return View(cliente)
-        End Function
+    <ValidateAntiForgeryToken()>
+    Function Create(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo,Activo")> ByVal cliente As Cliente) As ActionResult
+      If ModelState.IsValid Then
+        db.Cliente.Add(cliente)
+        db.SaveChanges()
+        Return RedirectToAction("Index")
+      End If
+      Return View(cliente)
+    End Function
 
-        ' GET: Clientes/Edit/5
-        Function Edit(ByVal id As Integer?) As ActionResult
+    ' GET: Clientes/Edit/5
+    Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
@@ -65,18 +65,18 @@ Namespace Controllers
         End Function
 
         <HttpPost()>
-        <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo")> ByVal cliente As Cliente) As ActionResult
-            If ModelState.IsValid Then
-                db.Entry(cliente).State = EntityState.Modified
-                db.SaveChanges()
-                Return RedirectToAction("Index")
-            End If
-            Return View(cliente)
-        End Function
+    <ValidateAntiForgeryToken()>
+    Function Edit(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo,Activo")> ByVal cliente As Cliente) As ActionResult
+      If ModelState.IsValid Then
+        db.Entry(cliente).State = EntityState.Modified
+        db.SaveChanges()
+        Return RedirectToAction("Index")
+      End If
+      Return View(cliente)
+    End Function
 
-        ' GET: Clientes/Delete/5
-        Function Delete(ByVal id As Integer?) As ActionResult
+    ' GET: Clientes/Delete/5
+    Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If

@@ -15,6 +15,8 @@ Partial Public Class Pedido
     Public Property FechaPedido As Date
     Public Property FechaModificacionPedido As Nullable(Of Date)
     Public Property IdCliente As Integer
+    Public Property EstadoPedido As Byte
+    Public Property IdTipoPedido As Integer
 
     Public Overridable Property Cliente As Cliente
     Public Overridable Property DetallePedido As ICollection(Of DetallePedido) = New HashSet(Of DetallePedido)

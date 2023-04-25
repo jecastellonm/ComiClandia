@@ -38,18 +38,18 @@ Namespace Controllers
 
         ' POST: Productoes/Create
         <HttpPost()>
-        <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ProductoID,Nombre,Descripcion,Stock,Valor,Departamento")> ByVal producto As Producto) As ActionResult
-            If ModelState.IsValid Then
-                db.Producto.Add(producto)
-                db.SaveChanges()
-                Return RedirectToAction("Index")
-            End If
-            Return View(producto)
-        End Function
+    <ValidateAntiForgeryToken()>
+    Function Create(<Bind(Include:="ProductoID,Nombre,Descripcion,Stock,Valor,Departamento,Activo")> ByVal producto As Producto) As ActionResult
+      If ModelState.IsValid Then
+        db.Producto.Add(producto)
+        db.SaveChanges()
+        Return RedirectToAction("Index")
+      End If
+      Return View(producto)
+    End Function
 
-        ' GET: Productoes/Edit/5
-        Function Edit(ByVal id As Integer?) As ActionResult
+    ' GET: Productoes/Edit/5
+    Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
@@ -62,18 +62,18 @@ Namespace Controllers
 
         ' POST: Productoes/Edit/5
         <HttpPost()>
-        <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ProductoID,Nombre,Descripcion,Stock,Valor,Departamento")> ByVal producto As Producto) As ActionResult
-            If ModelState.IsValid Then
-                db.Entry(producto).State = EntityState.Modified
-                db.SaveChanges()
-                Return RedirectToAction("Index")
-            End If
-            Return View(producto)
-        End Function
+    <ValidateAntiForgeryToken()>
+    Function Edit(<Bind(Include:="ProductoID,Nombre,Descripcion,Stock,Valor,Departamento,Activo")> ByVal producto As Producto) As ActionResult
+      If ModelState.IsValid Then
+        db.Entry(producto).State = EntityState.Modified
+        db.SaveChanges()
+        Return RedirectToAction("Index")
+      End If
+      Return View(producto)
+    End Function
 
-        ' GET: Productoes/Delete/5
-        Function Delete(ByVal id As Integer?) As ActionResult
+    ' GET: Productoes/Delete/5
+    Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
