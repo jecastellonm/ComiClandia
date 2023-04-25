@@ -32,6 +32,9 @@ End Code
     <th>
       @Html.DisplayNameFor(Function(model) model.Cliente.Nombre)
     </th>
+    <th>
+      @Html.DisplayName("Total Pedido")
+    </th>
     <th></th>
   </tr>
 
@@ -49,8 +52,14 @@ End Code
         Next
       </td>
       <td>
+        @Code
+          Dim TotalPedido As Integer = 0
+        End Code
         @For Each item2 In item.DetallePedido
           @<p>@Html.DisplayFor(Function(modelItem) item2.Cantidad)</p>
+          @Code
+            TotalPedido = TotalPedido + item2.Producto.Valor * item2.Cantidad
+          End Code
         Next
       </td>
       <td>
@@ -66,7 +75,7 @@ End Code
       <td>
         @For Each item2 In item.DetallePedido
           @<p>
-            @Html.HiddenFor(Function(modelItem) item2.DetallePedidoId) 
+            @Html.HiddenFor(Function(modelItem) item2.DetallePedidoId)
             @Html.ActionLink("Editar", "Edit", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
             @Html.ActionLink("Borrar", "Delete", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
           </p>
@@ -76,6 +85,9 @@ End Code
       </td>
       <td>
         @Html.DisplayFor(Function(modelItem) item.Cliente.Nombre)
+      </td>
+      <td>
+        <p>@TotalPedido</p>
       </td>
       <td>
         @Html.ActionLink("Editar", "Edit", New With {.id = item.PedidoId}) |
