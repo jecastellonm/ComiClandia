@@ -5,3 +5,5 @@ Instrucciones de uso
 - Ejecutar Aplicacion Manejo de Pedidos ComiClandia
 Estados de los Pedidos
 1 Pendiente, 2 Alistando, 3 Entregado, 4 En Cobro, 5 Pagado 6 Cancelado
+Tipo Pedido 
+1 Entrega Inmediata, 2 Domicilio, Retiro en TIenda
