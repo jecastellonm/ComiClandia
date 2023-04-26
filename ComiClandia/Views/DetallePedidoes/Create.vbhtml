@@ -1,9 +1,9 @@
 ﻿@ModelType ComiClandia.DetallePedido
 @Code
-  ViewBag("Title") = "Create"
+  ViewData("Title") = "Crear"
 End Code
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 @Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()
