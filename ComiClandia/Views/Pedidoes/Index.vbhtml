@@ -11,10 +11,16 @@ End Code
 <table class="table">
   <tr>
     <th>
-      @Html.DisplayNameFor(Function(model) model.FechaPedido)
+      @Html.DisplayName("Numero Pedido")
     </th>
     <th>
-      @Html.DisplayNameFor(Function(model) model.FechaModificacionPedido)
+      @Html.DisplayName("Fecha Pedido")
+    </th>
+    <th>
+      @Html.DisplayName("Fecha Modificacion Pedido")
+    </th>
+    <th>
+      @Html.DisplayName("Estado Pedido")
     </th>
     <th>
       @Html.DisplayName("Producto")
@@ -40,61 +46,67 @@ End Code
 
   @For Each item In Model
     @<tr>
-      <td>
-        @Html.DisplayFor(Function(modelItem) item.FechaPedido)
-      </td>
-      <td>
-        @Html.DisplayFor(Function(modelItem) item.FechaModificacionPedido)
-      </td>
-      <td>
-        @For Each item2 In item.DetallePedido
-          @<p>@Html.DisplayFor(Function(modelItem) item2.Producto.Nombre)</p>
-        Next
-      </td>
-      <td>
-        @Code
-          Dim TotalPedido As Integer = 0
-        End Code
-        @For Each item2 In item.DetallePedido
-          @<p>@Html.DisplayFor(Function(modelItem) item2.Cantidad)</p>
-          @Code
-            TotalPedido = TotalPedido + item2.Producto.Valor * item2.Cantidad
-          End Code
-        Next
-      </td>
-      <td>
-        @For Each item2 In item.DetallePedido
-          @<p>@Html.DisplayFor(Function(modelItem) item2.FechaAdiciDetaPedido)</p>
-        Next
-      </td>
-      <td>
-        @For Each item2 In item.DetallePedido
-          @<p>@Html.DisplayFor(Function(modelItem) item2.FechaModifiDetaPedido) </p>
-        Next
-      </td>
-      <td>
-        @For Each item2 In item.DetallePedido
-          @<p>
-            @Html.HiddenFor(Function(modelItem) item2.DetallePedidoId)
-            @Html.ActionLink("Editar", "Edit", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
-            @Html.ActionLink("Borrar", "Delete", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
-          </p>
-          @*@Html.ActionLink("Details", "Details", New With {.id = item.PedidoId }) |*@
+  <td>
+    @Html.DisplayFor(Function(modelItem) item.PedidoId)
+  </td>
+  <td>
+    @Html.DisplayFor(Function(modelItem) item.FechaPedido)
+  </td>
+  <td>
+    @Html.DisplayFor(Function(modelItem) item.FechaModificacionPedido)
+  </td>
+  <td>
+    @Html.DisplayFor(Function(modelItem) item.EstadoPedido)
+  </td>
+  <td>
+    @For Each item2 In item.DetallePedido
+      @<p>@Html.DisplayFor(Function(modelItem) item2.Producto.Nombre)</p>
+    Next
+  </td>
+  <td>
+    @Code
+      Dim TotalPedido As Integer = 0
+    End Code
+    @For Each item2 In item.DetallePedido
+      @<p>@Html.DisplayFor(Function(modelItem) item2.Cantidad)</p>
+      @Code
+        TotalPedido = TotalPedido + item2.Producto.Valor * item2.Cantidad
+      End Code
+    Next
+  </td>
+  <td>
+    @For Each item2 In item.DetallePedido
+      @<p>@Html.DisplayFor(Function(modelItem) item2.FechaAdiciDetaPedido)</p>
+    Next
+  </td>
+  <td>
+    @For Each item2 In item.DetallePedido
+      @<p>@Html.DisplayFor(Function(modelItem) item2.FechaModifiDetaPedido) </p>
+    Next
+  </td>
+  <td>
+    @For Each item2 In item.DetallePedido
+      @<p>
+        @Html.HiddenFor(Function(modelItem) item2.DetallePedidoId)
+        @Html.ActionLink("Editar", "Edit", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
+        @Html.ActionLink("Borrar", "Delete", "DetallePedidoes", New With {.id = item2.DetallePedidoId}, "")
+      </p>
+      @*@Html.ActionLink("Details", "Details", New With {.id = item.PedidoId }) |*@
 
-        Next
-      </td>
-      <td>
-        @Html.DisplayFor(Function(modelItem) item.Cliente.Nombre)
-      </td>
-      <td>
-        <p><strong>@TotalPedido</strong></p>
-      </td>
-      <td>
-        @Html.ActionLink("Editar", "Edit", New With {.id = item.PedidoId}) |
-        @*@Html.ActionLink("Details", "Details", New With {.id = item.PedidoId }) |*@
-        @Html.ActionLink("Borrar", "Delete", New With {.id = item.PedidoId})
-      </td>
-    </tr>
+    Next
+  </td>
+  <td>
+    @Html.DisplayFor(Function(modelItem) item.Cliente.Nombre)
+  </td>
+  <td>
+    <p><strong>@TotalPedido</strong></p>
+  </td>
+  <td>
+    @Html.ActionLink("Editar", "Edit", New With {.id = item.PedidoId}) |
+    @*@Html.ActionLink("Details", "Details", New With {.id = item.PedidoId }) |*@
+    @Html.ActionLink("Borrar", "Delete", New With {.id = item.PedidoId})
+  </td>
+</tr>
   Next
 
 </table>

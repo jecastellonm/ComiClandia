@@ -1,9 +1,9 @@
 ﻿@ModelType ComiClandia.Pedido
 @Code
-  ViewData("Title") = "Create"
+  ViewData("Title") = "Crear"
 End Code
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 @Using (Html.BeginForm())
   @Html.AntiForgeryToken()
@@ -45,7 +45,7 @@ End Code
   </div>
 
   <div Class="form-group">
-    @Html.Label("Tipo Pedido (1 Entrega Inmediata, 2 Domicilio, Retiro en TIenda)", htmlAttributes:=New With {.class = "control-label col-md-2"})
+    @Html.Label("Tipo Pedido (1 Entrega Inmediata, 2 Domicilio, 3 Retiro en TIenda)", htmlAttributes:=New With {.class = "control-label col-md-2"})
     <div Class="col-md-10">
       @Html.EditorFor(Function(model) model.EstadoPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
       @Html.ValidationMessageFor(Function(model) model.EstadoPedido, "", New With {.class = "text-danger"})
