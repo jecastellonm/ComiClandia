@@ -78,15 +78,23 @@ Namespace Controllers
     End Function
 
     ' GET: Pedidoes/Edit/5
-    Function Edit(ByVal id As Integer?) As ActionResult
+    Function Edit(ByVal id As Integer?,
+                  <Bind(Include:="DetallePedidoId,IdProducto,IdCliente,FechaAdiciDetaPedido,FechaModifiDetaPedido")> ByVal detallepedido As DetallePedido
+      ) As ActionResult
       If IsNothing(id) Then
         Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
       End If
       Dim pedido As Pedido = db.Pedido.Find(id)
+      Dim detallepedido1 As DetallePedido = db.DetallePedido.FirstOrDefault(Function(dp) dp.IdPedido = pedido.PedidoId)
       If IsNothing(pedido) Then
         Return HttpNotFound()
       End If
       ViewBag.IdCliente = New SelectList(db.Cliente, "ClienteId", "Nombre", pedido.IdCliente)
+      ViewBag.IdProducto = New SelectList(db.Producto, "ProductoId", "Nombre", detallepedido1.IdProducto)
+      ViewBag.Observaciones = detallepedido1.Observaciones
+      ViewBag.Cantidad = detallepedido1.Cantidad
+      ViewBag.Activo = detallepedido1.Activo
+
       Return View(pedido)
     End Function
 
@@ -99,12 +107,12 @@ Namespace Controllers
 
       If ModelState.IsValid Then
         pedido.FechaModificacionPedido = DateTime.Now
-        detallepedido.FechaModifiDetaPedido = DateTime.Now
         db.Entry(pedido).State = EntityState.Modified
         db.SaveChanges()
         Return RedirectToAction("Index")
       End If
       ViewBag.IdCliente = New SelectList(db.Cliente, "ClienteId", "Nombre", pedido.IdCliente)
+      ViewBag.IdProducto = New SelectList(db.Producto, "ProductoId", "Nombre", detallepedido.IdProducto)
       Return View(pedido)
     End Function
 

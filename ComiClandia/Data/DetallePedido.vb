@@ -15,9 +15,9 @@ Partial Public Class DetallePedido
     Public Property IdProducto As Integer
     Public Property IdPedido As Integer
     Public Property Cantidad As Integer
+    Public Property TotalDetalleP As Integer
     Public Property FechaAdiciDetaPedido As Date
     Public Property FechaModifiDetaPedido As Nullable(Of Date)
-    Public Property TotalDetalleP As Integer
     Public Property Observaciones As String
     Public Property Activo As Boolean
 

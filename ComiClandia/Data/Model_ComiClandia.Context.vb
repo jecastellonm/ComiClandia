@@ -27,8 +27,8 @@ Partial Public Class ComiClandiaEntities
     Public Overridable Property Cliente() As DbSet(Of Cliente)
     Public Overridable Property Producto() As DbSet(Of Producto)
     Public Overridable Property sysdiagrams() As DbSet(Of sysdiagrams)
-    Public Overridable Property DetallePedido() As DbSet(Of DetallePedido)
     Public Overridable Property Pedido() As DbSet(Of Pedido)
+    Public Overridable Property DetallePedido() As DbSet(Of DetallePedido)
 
     Public Overridable Function CreateEditCliente(clienteId As Nullable(Of Integer), nombre As String, identificacion As String, direccion As String, telefono As String, ciudad As String) As ObjectResult(Of Cliente)
         Dim clienteIdParameter As ObjectParameter = If(clienteId.HasValue, New ObjectParameter("ClienteId", clienteId), New ObjectParameter("ClienteId", GetType(Integer)))

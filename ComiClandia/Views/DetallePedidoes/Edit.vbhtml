@@ -15,31 +15,55 @@ End Code
   @Html.HiddenFor(Function(model) model.DetallePedidoId)
   @Html.HiddenFor(Function(model) model.FechaAdiciDetaPedido)
 
-    <div class="form-group">
-      @Html.LabelFor(Function(model) model.IdProducto, "Producto", htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.DropDownList("IdProducto", Nothing, htmlAttributes:=New With {.class = "form-control"})
-        @Html.ValidationMessageFor(Function(model) model.IdProducto, "", New With {.class = "text-danger"})
-      </div>
+  @*<div class="form-group">
+    @Html.LabelFor(Function(model) model.Pedido.PedidoId, "IdPedido", htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.DropDownList("IdPedido", Nothing, htmlAttributes:=New With {.class = "form-control"})
+      @Html.ValidationMessageFor(Function(model) model.Pedido.PedidoId, "", New With {.class = "text-danger"})
     </div>
+  </div>*@
 
-    <div class="form-group">
-      @Html.LabelFor(Function(model) model.IdPedido, "IdPedido", htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.DropDownList("IdPedido", Nothing, htmlAttributes:=New With {.class = "form-control"})
-        @Html.ValidationMessageFor(Function(model) model.IdPedido, "", New With {.class = "text-danger"})
-      </div>
+  <div class="form-group">
+    @Html.LabelFor(Function(model) model.IdProducto, "Producto", htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.DropDownList("IdProducto", Nothing, htmlAttributes:=New With {.class = "form-control"})
+      @Html.ValidationMessageFor(Function(model) model.IdProducto, "", New With {.class = "text-danger"})
     </div>
+  </div>
 
-    <div class="form-group">
-      @Html.LabelFor(Function(model) model.Cantidad, htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.Cantidad, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.Cantidad, "", New With {.class = "text-danger"})
-      </div>
+  <div class="form-group">
+    @Html.LabelFor(Function(model) model.IdPedido, "IdPedido", htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.DropDownList("IdPedido", Nothing, htmlAttributes:=New With {.class = "form-control"})
+      @Html.ValidationMessageFor(Function(model) model.IdPedido, "", New With {.class = "text-danger"})
     </div>
+  </div>
 
-    @*<div class="form-group">
+  <div class="form-group">
+    @Html.LabelFor(Function(model) model.Cantidad, htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.EditorFor(Function(model) model.Cantidad, New With {.htmlAttributes = New With {.class = "form-control"}})
+      @Html.ValidationMessageFor(Function(model) model.Cantidad, "", New With {.class = "text-danger"})
+    </div>
+  </div>
+
+  <div class="form-group">
+    @Html.LabelFor(Function(model) model.Observaciones, htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.EditorFor(Function(model) model.Observaciones, New With {.htmlAttributes = New With {.class = "form-control"}})
+      @Html.ValidationMessageFor(Function(model) model.Observaciones, "", New With {.class = "text-danger"})
+    </div>
+  </div>
+
+  <div class="form-group">
+    @Html.LabelFor(Function(model) model.Activo, htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+      @Html.EditorFor(Function(model) model.Activo, New With {.htmlAttributes = New With {.class = "form-control"}})
+      @Html.ValidationMessageFor(Function(model) model.Activo, "", New With {.class = "text-danger"})
+    </div>
+  </div>
+
+  @*<div class="form-group">
       @Html.LabelFor(Function(model) model.FechaAdiciDetaPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
       <div class="col-md-10">
         @Html.EditorFor(Function(model) model.FechaAdiciDetaPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
@@ -55,12 +79,12 @@ End Code
       </div>
     </div>*@
 
-    <div class="form-group">
-      <div class="col-md-offset-2 col-md-10">
-        <input type = "submit" value="Save" class="btn btn-default" />
-      </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="Save" class="btn btn-default" />
     </div>
   </div>
+</div>
 End Using
 
 <div>

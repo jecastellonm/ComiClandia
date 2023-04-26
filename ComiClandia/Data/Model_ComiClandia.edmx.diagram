@@ -8,12 +8,12 @@
         <EntityTypeShape EntityType="ComiClandiaModel.Cliente" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ComiClandiaModel.Producto" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ComiClandiaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ComiClandiaModel.DetallePedido" Width="1.5" PointX="5.375" PointY="1" />
         <EntityTypeShape EntityType="ComiClandiaModel.Pedido" Width="1.5" PointX="3" PointY="1.25" />
         <AssociationConnector Association="ComiClandiaModel.FK_Pedido_Cliente" />
-        <AssociationConnector Association="ComiClandiaModel.FK_DetallePedido_Pedido" />
-        <AssociationConnector Association="ComiClandiaModel.FK_DetallePedido_Producto" />
-      </Diagram>
+        <EntityTypeShape EntityType="ComiClandiaModel.DetallePedido" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="ComiClandiaModel.FK_DetallePedido_Pedido_IdPedido" />
+        <AssociationConnector Association="ComiClandiaModel.FK_DetallePedido_Producto_IdProducto" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

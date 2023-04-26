@@ -178,8 +178,8 @@
           <Property Name="Stock" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Int32" Nullable="false" />
           <Property Name="Departamento" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DetallePedido" Relationship="ComiClandiaModel.FK_DetallePedido_Producto" FromRole="Producto" ToRole="DetallePedido" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DetallePedido" Relationship="ComiClandiaModel.FK_DetallePedido_Producto_IdProducto" FromRole="Producto" ToRole="DetallePedido" />
         </EntityType>
         <EntityContainer Name="ComiClandiaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
@@ -211,21 +211,21 @@
             <Parameter Name="Departamento" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="sysdiagrams" EntityType="ComiClandiaModel.sysdiagrams" />
-          <EntitySet Name="DetallePedido" EntityType="ComiClandiaModel.DetallePedido" />
           <EntitySet Name="Pedido" EntityType="ComiClandiaModel.Pedido" />
           <AssociationSet Name="FK_Pedido_Cliente" Association="ComiClandiaModel.FK_Pedido_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FK_DetallePedido_Pedido" Association="ComiClandiaModel.FK_DetallePedido_Pedido">
+          <EntitySet Name="DetallePedido" EntityType="ComiClandiaModel.DetallePedido" />
+          <AssociationSet Name="FK_DetallePedido_Pedido_IdPedido" Association="ComiClandiaModel.FK_DetallePedido_Pedido_IdPedido">
             <End Role="Pedido" EntitySet="Pedido" />
             <End Role="DetallePedido" EntitySet="DetallePedido" />
           </AssociationSet>
-          <AssociationSet Name="FK_DetallePedido_Producto" Association="ComiClandiaModel.FK_DetallePedido_Producto">
+          <AssociationSet Name="FK_DetallePedido_Producto_IdProducto" Association="ComiClandiaModel.FK_DetallePedido_Producto_IdProducto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="DetallePedido" EntitySet="DetallePedido" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="CreateEditCliente_Result">
           <Property Type="Int32" Name="ClienteId" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
@@ -267,22 +267,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="DetallePedido">
-          <Key>
-            <PropertyRef Name="DetallePedidoId" />
-          </Key>
-          <Property Name="DetallePedidoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdProducto" Type="Int32" Nullable="false" />
-          <Property Name="IdPedido" Type="Int32" Nullable="false" />
-          <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <Property Name="FechaAdiciDetaPedido" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FechaModifiDetaPedido" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Pedido" Relationship="ComiClandiaModel.FK_DetallePedido_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
-          <NavigationProperty Name="Producto" Relationship="ComiClandiaModel.FK_DetallePedido_Producto" FromRole="DetallePedido" ToRole="Producto" />
-          <Property Name="TotalDetalleP" Type="Int32" Nullable="false" />
-          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="Pedido">
           <Key>
             <PropertyRef Name="PedidoId" />
@@ -292,9 +276,9 @@
           <Property Name="FechaModificacionPedido" Type="DateTime" Precision="3" />
           <Property Name="IdCliente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="ComiClandiaModel.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
-          <NavigationProperty Name="DetallePedido" Relationship="ComiClandiaModel.FK_DetallePedido_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
           <Property Name="EstadoPedido" Type="Byte" Nullable="false" />
           <Property Name="IdTipoPedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetallePedido" Relationship="ComiClandiaModel.FK_DetallePedido_Pedido_IdPedido" FromRole="Pedido" ToRole="DetallePedido" />
         </EntityType>
         <Association Name="FK_Pedido_Cliente">
           <End Type="ComiClandiaModel.Cliente" Role="Cliente" Multiplicity="1" />
@@ -308,7 +292,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DetallePedido_Pedido">
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="DetallePedidoId" />
+          </Key>
+          <Property Name="DetallePedidoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="TotalDetalleP" Type="Int32" Nullable="false" />
+          <Property Name="FechaAdiciDetaPedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModifiDetaPedido" Type="DateTime" Precision="3" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="ComiClandiaModel.FK_DetallePedido_Pedido_IdPedido" FromRole="DetallePedido" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="ComiClandiaModel.FK_DetallePedido_Producto_IdProducto" FromRole="DetallePedido" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK_DetallePedido_Pedido_IdPedido">
           <End Type="ComiClandiaModel.Pedido" Role="Pedido" Multiplicity="1" />
           <End Type="ComiClandiaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -320,8 +320,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DetallePedido_Producto">
-          <End Type="ComiClandiaModel.Producto" Role="Producto" Multiplicity="1" />
+        <Association Name="FK_DetallePedido_Producto_IdProducto">
+          <End Type="ComiClandiaModel.Producto" Role="Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ComiClandiaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
@@ -332,7 +334,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -384,21 +386,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DetallePedido">
-            <EntityTypeMapping TypeName="ComiClandiaModel.DetallePedido">
-              <MappingFragment StoreEntitySet="DetallePedido">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="TotalDetalleP" ColumnName="TotalDetalleP" />
-                <ScalarProperty Name="FechaModifiDetaPedido" ColumnName="FechaModifiDetaPedido" />
-                <ScalarProperty Name="FechaAdiciDetaPedido" ColumnName="FechaAdiciDetaPedido" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
-                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-                <ScalarProperty Name="DetallePedidoId" ColumnName="DetallePedidoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Pedido">
             <EntityTypeMapping TypeName="ComiClandiaModel.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
@@ -408,6 +395,21 @@
                 <ScalarProperty Name="FechaModificacionPedido" ColumnName="FechaModificacionPedido" />
                 <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
                 <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallePedido">
+            <EntityTypeMapping TypeName="ComiClandiaModel.DetallePedido">
+              <MappingFragment StoreEntitySet="DetallePedido">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="FechaModifiDetaPedido" ColumnName="FechaModifiDetaPedido" />
+                <ScalarProperty Name="FechaAdiciDetaPedido" ColumnName="FechaAdiciDetaPedido" />
+                <ScalarProperty Name="TotalDetalleP" ColumnName="TotalDetalleP" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="DetallePedidoId" ColumnName="DetallePedidoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
