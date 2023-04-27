@@ -43,7 +43,7 @@ Namespace Controllers
         ' POST: Clientes/Create
         <HttpPost()>
     <ValidateAntiForgeryToken()>
-    Function Create(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo,Activo")> ByVal cliente As Cliente) As ActionResult
+    Function Create(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo,Activo,DescuentoAutorizado,DescuentoActivo")> ByVal cliente As Cliente) As ActionResult
       If ModelState.IsValid Then
         db.Cliente.Add(cliente)
         db.SaveChanges()
@@ -66,7 +66,7 @@ Namespace Controllers
 
         <HttpPost()>
     <ValidateAntiForgeryToken()>
-    Function Edit(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo,Activo")> ByVal cliente As Cliente) As ActionResult
+    Function Edit(<Bind(Include:="ClienteId,Nombre,Identificacion,Direccion,Telefono,Ciudad,Exclusivo,Activo,DescuentoAutorizado,DescuentoActivo")> ByVal cliente As Cliente) As ActionResult
       If ModelState.IsValid Then
         db.Entry(cliente).State = EntityState.Modified
         db.SaveChanges()

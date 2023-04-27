@@ -17,6 +17,8 @@
           <Property Name="Ciudad" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Exclusivo" Type="bit" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="DescuentoAutorizado" Type="tinyint" />
+          <Property Name="DescuentoActivo" Type="bit" />
         </EntityType>
         <EntityType Name="DetallePedido">
           <Key>
@@ -167,6 +169,8 @@
           <Property Name="Exclusivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Pedido" Relationship="ComiClandiaModel.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="DescuentoAutorizado" Type="Byte" />
+          <Property Name="DescuentoActivo" Type="Boolean" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -343,6 +347,8 @@
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="ComiClandiaModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="DescuentoActivo" ColumnName="DescuentoActivo" />
+                <ScalarProperty Name="DescuentoAutorizado" ColumnName="DescuentoAutorizado" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
