@@ -7,6 +7,8 @@ CREATE TABLE [dbo].[Cliente](
 	[Ciudad] [varchar](20) NOT NULL,
 	[Exclusivo] [bit] NOT NULL,
 	[Activo] [bit] NOT NULL,
+	[DescuentoAutorizado] [tinyint] NULL,
+	[DescuentoActivo] [bit] NULL,
  CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
 (
 	[ClienteId] ASC
