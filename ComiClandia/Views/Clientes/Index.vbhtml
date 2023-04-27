@@ -65,6 +65,7 @@ End Code
   </td>
   <td align="center">
     @Html.DisplayFor(Function(modelItem) item.DescuentoAutorizado)
+    @Html.Raw("%")
   </td>
   <td align="center">
     @Html.DisplayFor(Function(modelItem) item.DescuentoActivo)
