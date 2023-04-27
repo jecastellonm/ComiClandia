@@ -47,7 +47,7 @@ End Code
   </div>
 
   <div Class="form-group">
-    @Html.Label("Tipo Pedido (1 Entrega Inmediata, 2 Domicilio, Retiro en TIenda)", htmlAttributes:=New With {.class = "control-label col-md-2"})
+    @Html.Label("Tipo Pedido (1 Entrega Inmediata, 2 Domicilio, 3 Retiro en TIenda  4 Plan Separe)", htmlAttributes:=New With {.class = "control-label col-md-2"})
     <div Class="col-md-10">
       @Html.EditorFor(Function(model) model.IdTipoPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
       @Html.ValidationMessageFor(Function(model) model.IdTipoPedido, "", New With {.class = "text-danger"})

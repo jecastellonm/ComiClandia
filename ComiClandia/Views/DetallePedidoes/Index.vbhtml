@@ -39,31 +39,31 @@ End Code
 
 @For Each item In Model
     @<tr>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.Producto.Nombre)
   </td>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.Cantidad)
   </td>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.TotalDetalleP)
   </td>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.FechaAdiciDetaPedido)
   </td>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.FechaModifiDetaPedido)
   </td>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.Pedido.PedidoId)
   </td>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.Observaciones)
   </td>
-  <td>
+  <td align="center">
     @Html.DisplayFor(Function(modelItem) item.Activo)
   </td>
-  <td>
+  <td align="center">
     @Html.ActionLink("Editar", "Edit", New With {.id = item.DetallePedidoId}) |
     @*@Html.ActionLink("Details", "Details", New With {.id = item.DetallePedidoId }) |*@
     @Html.ActionLink("Borrar", "Delete", New With {.id = item.DetallePedidoId})

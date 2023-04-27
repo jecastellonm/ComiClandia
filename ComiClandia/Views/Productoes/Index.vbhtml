@@ -30,22 +30,26 @@ End Code
 
   @For Each item In Model
     @<tr>
-      <td>
+      <td align="center">
         @Html.DisplayFor(Function(modelItem) item.Nombre)
       </td>
-      <td>
+      <td align="center">
         @Html.DisplayFor(Function(modelItem) item.Descripcion)
       </td>
-      <td>
+      <td align="center">
         @Html.DisplayFor(Function(modelItem) item.Stock)
       </td>
-      <td>
-        @Html.DisplayFor(Function(modelItem) item.Valor)
+      <td align="center">
+        @Code
+          Dim Valor As Integer = item.Valor
+        End Code
+        @*@Html.DisplayFor(Function(modelItem) item.Valor)*@
+        @Valor.ToString("$ #,#")
       </td>
-      <td>
+      <td align="center">
         @Html.DisplayFor(Function(modelItem) item.Departamento)
       </td>
-      <td>
+      <td align="center">
         @Html.ActionLink("Editar", "Edit", New With {.id = item.ProductoID}) |
         @*@Html.ActionLink("Details", "Details", New With {.id = item.ProductoID}) |*@
         @Html.ActionLink("Borrar", "Delete", New With {.id = item.ProductoID})

@@ -6,4 +6,4 @@ Instrucciones de uso
 Estados de los Pedidos
 1 Pendiente, 2 Alistando, 3 Entregado, 4 En Cobro, 5 Pagado 6 Cancelado
 Tipo Pedido 
-1 Entrega Inmediata,  2 Domicilio,  3 Retiro en TIenda
+1 Entrega Inmediata,  2 Domicilio,  3 Retiro en TIenda 4 Plan Separe

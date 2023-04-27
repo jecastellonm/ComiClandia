@@ -33,25 +33,25 @@ End Code
 
 @For Each item In Model
     @<tr>
-        <td>
+        <td align="center">
             @Html.DisplayFor(Function(modelItem) item.Nombre)
         </td>
-        <td>
+        <td align="center">
             @Html.DisplayFor(Function(modelItem) item.Identificacion)
         </td>
-        <td>
+        <td align="center">
             @Html.DisplayFor(Function(modelItem) item.Direccion)
         </td>
-        <td>
+        <td align="center">
             @Html.DisplayFor(Function(modelItem) item.Telefono)
         </td>
-        <td>
+        <td align="center">
             @Html.DisplayFor(Function(modelItem) item.Ciudad)
         </td>
-        <td>
+        <td align="center">
             @Html.DisplayFor(Function(modelItem) item.Exclusivo)
         </td>
-        <td>
+        <td align="center">
             @Html.ActionLink("Editar", "Editar", New With {.id = item.ClienteId}) |
             @*@Html.ActionLink("Details", "Details", New With {.id = item.ClienteId }) |*@
             @Html.ActionLink("Borrar", "Delete", New With {.id = item.ClienteId})
