@@ -46,7 +46,11 @@ End Code
     @Html.DisplayFor(Function(modelItem) item.Cantidad)
   </td>
   <td align="center">
-    @Html.DisplayFor(Function(modelItem) item.TotalDetalleP)
+    @Code
+      Dim TotalDetalleP As Integer = item.TotalDetalleP
+    End Code
+    @*@Html.DisplayFor(Function(modelItem) item.TotalDetalleP)*@
+    @TotalDetalleP.ToString("$ #,#")
   </td>
   <td align="center">
     @Html.DisplayFor(Function(modelItem) item.FechaAdiciDetaPedido)
