@@ -1,6 +1,6 @@
 ﻿@ModelType ComiClandia.Cliente
 @Code
-    ViewData("Title") = "Editar"
+  ViewData("Title") = "Edit"
 End Code
 
 <h2>Edit</h2>

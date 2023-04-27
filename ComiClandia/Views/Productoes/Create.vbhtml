@@ -3,7 +3,7 @@
     ViewData("Title") = "Create"
 End Code
 
-<h2>Create</h2>
+<h2>Crear Nuevo</h2>
 
 @Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()

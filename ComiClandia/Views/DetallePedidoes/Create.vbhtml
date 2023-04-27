@@ -1,6 +1,6 @@
 ﻿@ModelType ComiClandia.DetallePedido
 @Code
-  ViewData("Title") = "Crear"
+  ViewData("Title") = "Create"
 End Code
 
 <h2>Crear</h2>

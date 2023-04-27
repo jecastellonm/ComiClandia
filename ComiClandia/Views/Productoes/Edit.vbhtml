@@ -3,7 +3,7 @@
     ViewData("Title") = "Edit"
 End Code
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
