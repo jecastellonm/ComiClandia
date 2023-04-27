@@ -15,21 +15,6 @@ End Code
   @Html.HiddenFor(Function(model) model.PedidoId)
   @Html.HiddenFor(Function(model) model.FechaPedido)
 
-  @*<div class="form-group">
-      @Html.LabelFor(Function(model) model.FechaPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.FechaPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.FechaPedido, "", New With {.class = "text-danger"})
-      </div>
-    </div>
-
-    <div class="form-group">
-      @Html.LabelFor(Function(model) model.FechaModificacionPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.FechaModificacionPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.FechaModificacionPedido, "", New With {.class = "text-danger"})
-      </div>
-    </div>*@
   <div class="form-group">
     @Html.LabelFor(Function(model) model.IdCliente, "Cliente", htmlAttributes:=New With {.class = "control-label col-md-2"})
     <div class="col-md-10">

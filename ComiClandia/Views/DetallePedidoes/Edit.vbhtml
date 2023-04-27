@@ -15,14 +15,6 @@ End Code
   @Html.HiddenFor(Function(model) model.DetallePedidoId)
   @Html.HiddenFor(Function(model) model.FechaAdiciDetaPedido)
 
-  @*<div class="form-group">
-    @Html.LabelFor(Function(model) model.Pedido.PedidoId, "IdPedido", htmlAttributes:=New With {.class = "control-label col-md-2"})
-    <div class="col-md-10">
-      @Html.DropDownList("IdPedido", Nothing, htmlAttributes:=New With {.class = "form-control"})
-      @Html.ValidationMessageFor(Function(model) model.Pedido.PedidoId, "", New With {.class = "text-danger"})
-    </div>
-  </div>*@
-
   <div class="form-group">
     @Html.LabelFor(Function(model) model.IdProducto, "Producto", htmlAttributes:=New With {.class = "control-label col-md-2"})
     <div class="col-md-10">
@@ -62,22 +54,6 @@ End Code
       @Html.ValidationMessageFor(Function(model) model.Activo, "", New With {.class = "text-danger"})
     </div>
   </div>
-
-  @*<div class="form-group">
-      @Html.LabelFor(Function(model) model.FechaAdiciDetaPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.FechaAdiciDetaPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.FechaAdiciDetaPedido, "", New With {.class = "text-danger"})
-      </div>
-    </div>
-
-    <div class="form-group">
-      @Html.LabelFor(Function(model) model.FechaModifiDetaPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.FechaModifiDetaPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.FechaModifiDetaPedido, "", New With {.class = "text-danger"})
-      </div>
-    </div>*@
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">

@@ -12,21 +12,6 @@ End Code
   <h4>Pedido</h4>
   <hr />
   @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
-  @*<div class="form-group">
-      @Html.LabelFor(Function(model) model.FechaPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
-      <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.FechaPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.FechaPedido, "", New With {.class = "text-danger"})
-      </div>
-    </div>*@
-
-  @*<div class="form-group">
-    @Html.LabelFor(Function(model) model.FechaModificacionPedido, htmlAttributes:=New With {.class = "control-label col-md-2"})
-    <div class="col-md-10">
-      @Html.EditorFor(Function(model) model.FechaModificacionPedido, New With {.htmlAttributes = New With {.class = "form-control"}})
-      @Html.ValidationMessageFor(Function(model) model.FechaModificacionPedido, "", New With {.class = "text-danger"})
-    </div>
-  </div>*@
 
   <div class="form-group">
     @Html.LabelFor(Function(model) model.IdCliente, "Cliente", htmlAttributes:=New With {.class = "control-label col-md-2"})
@@ -72,19 +57,15 @@ End Code
   <div class="form-group">
     @Html.Label("IdProducto", "Producto", htmlAttributes:=New With {.class = "control-label col-md-2"})
     <div Class="col-md-10">
-      @*@For Each item In Model.DetallePedido*@
       @Html.DropDownList("IdProducto", Nothing, htmlAttributes:=New With {.class = "form-control"})
       @*@Html.ValidationMessageFor(Function(model) item.IdProducto, "", New With {.class = "text-danger"})*@
-      @*Next*@
     </div>
   </div>
   <div Class="form-group">
     @Html.Label("Cantidad", "Cantidad", htmlAttributes:=New With {.class = "control-label col-md-2"})
     <div Class="col-md-10">
-      @*@For Each item In Model.DetallePedido*@
       @Html.Editor("Cantidad", New With {.htmlAttributes = New With {.class = "form-control"}})
       @*@Html.ValidationMessageFor(Function(model) item.Cantidad, "", New With {.class = "text-danger"})*@
-      @*Next*@
     </div>
   </div>
 
